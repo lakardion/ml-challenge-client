@@ -1,0 +1,42 @@
+@import "../../styles/theme.scss";
+.header {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar{
+ display: flex;
+ flex-direction: row;
+ padding:0.5rem 0 0.5rem;
+ align-items: center;
+ height: 100%;
+ flex-grow: 1;
+}
+.search-input{
+  flex-grow: 1;
+  font-size: 1rem;
+  border: none;
+  height: 1.5rem;
+}
+
+.search-icon{
+ display: flex;
+ background-color: $black-100;
+ flex-wrap: wrap;
+ padding: 0.28rem;
+}
+
+.input-container{
+  display:flex;
+  background-color: white;
+  flex-grow: 1;
+  margin-right: 0.5rem;
+}
