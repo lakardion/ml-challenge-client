@@ -1,6 +1,9 @@
 @import "../../styles/theme.scss";
 .header {
   background: $primary;
+}
+
+.form-search {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,6 +35,8 @@
  background-color: $black-100;
  flex-wrap: wrap;
  padding: 0.28rem;
+ border:none;
+ cursor: pointer;
 }
 
 .input-container{

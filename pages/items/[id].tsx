@@ -7,17 +7,24 @@ import styles from "./items.module.scss";
 
 const ItemById = () => {
   const { query } = useRouter();
+
   const fetchItemDetail = useItemsStore((is) => is.fetchSingleItem);
+  const clearItemDetail = useItemsStore((is) => is.clearCurrentItemDetail);
   const singleItem = useItemsStore((is) => is.singleItem);
+
   useEffect(() => {
     const { id } = query;
     //TODO: check why id could be string array?
     fetchItemDetail(id as string);
-  }, [fetchItemDetail, query]);
+
+    return () => {
+      clearItemDetail();
+    };
+  }, [clearItemDetail, fetchItemDetail, query]);
 
   return (
     <div className={styles["item-detail-container"]}>
-      <ItemDetail itemDetailData={singleItem} />
+      {singleItem ? <ItemDetail itemDetailData={singleItem} /> : null}
     </div>
   );
 };

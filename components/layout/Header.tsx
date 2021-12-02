@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
 import useItemsStore from "../../stores/itemsStore";
 import styles from "./Header.module.scss";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [search, setSearch] = useState("");
@@ -14,6 +14,7 @@ const Header = () => {
   };
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    if (!search) return;
     e.preventDefault();
     fetchItems(search);
     router.push(
@@ -28,15 +29,15 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <form onSubmit={handleSearch}>
-        <button className={styles.logo}>
+      <form onSubmit={handleSearch} className={styles["form-search"]}>
+        <div className={styles.logo}>
           <Image
             src="/Logo_ML.png"
             alt="mercado libre logo"
             width={40}
             height={25}
           />
-        </button>
+        </div>
         <div className={styles["search-bar"]}>
           <div className={styles["input-container"]}>
             <input
@@ -46,14 +47,14 @@ const Header = () => {
               onChange={handleSearchInput}
               placeholder="Nunca dejes de buscar"
             />
-            <div className={styles["search-icon"]}>
+            <button className={styles["search-icon"]} type="submit">
               <Image
                 src="/ic_Search.png"
                 alt="search icon"
                 width={15}
                 height={15}
               />
-            </div>
+            </button>
           </div>
         </div>
       </form>

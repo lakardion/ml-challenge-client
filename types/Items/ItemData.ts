@@ -4,7 +4,7 @@ interface ItemData {
   id: string;
   title: string;
   price: Price;
-  pictures: string[];
+  picture: string;
   condition: boolean;
   free_shipping: boolean;
 }

@@ -13,8 +13,8 @@ const ItemDetail = ({ itemDetailData }: ItemDetailProps) => {
           <Image
             src={itemDetailData.pictures?.[0]}
             alt="item picture"
-            height={50}
-            width={50}
+            height={500}
+            width={300}
           />
         </div>
         <div className={styles["description"]}>
@@ -28,7 +28,7 @@ const ItemDetail = ({ itemDetailData }: ItemDetailProps) => {
         </div>
         <div className={styles["name"]}> {itemDetailData.title}</div>
         <div className={styles["price"]}>
-          <h2>$ {itemDetailData.price}</h2>
+          <h2>$ {itemDetailData.price.amount}</h2>
         </div>
         <button className={styles["buy-button"]}>Comprar</button>
       </div>
