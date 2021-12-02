@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { ChangeEvent, FormEvent, useState } from "react";
-import useItemsStore from "../../stores/itemsStore";
-import styles from "./Header.module.scss";
 import { useRouter } from "next/router";
+import { ChangeEvent, FormEvent, useState } from "react";
+import styles from "./Header.module.scss";
 
 const Header = () => {
   const [search, setSearch] = useState("");
-  const fetchItems = useItemsStore((is) => is.fetchItems);
   const router = useRouter();
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +14,6 @@ const Header = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     if (!search) return;
     e.preventDefault();
-    fetchItems(search);
     router.push(
       {
         pathname: "/items",
