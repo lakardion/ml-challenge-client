@@ -1,0 +1,55 @@
+@import "../../styles/theme.scss";
+@import "../../styles/pxToRem.scss";
+
+.item {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-bottom: solid 1px rgba($black-500, 0.5);
+  width: 100%;
+}
+.image-container {
+  max-height: 180px;
+  max-width: 180px;
+  margin: pxToRem(16px);
+
+  img {
+    border-radius: pxToRem(4px);
+  }
+}
+.item-description {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.price-state {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 0 pxToRem(32px);
+}
+
+.price-shipping {
+  flex-grow: 1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  .price {
+    font-size: pxToRem(24px);
+    font-weight: 400;
+  }
+}
+.free-shipping-icon {
+  flex-grow: 1;
+}
+.description {
+  font-size: pxToRem(18px);
+}
+.seller-location {
+  font-size: pxToRem(12px);
+  color: $black-500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}

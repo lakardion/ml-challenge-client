@@ -7,6 +7,7 @@ interface ItemData {
   picture: string;
   condition: boolean;
   free_shipping: boolean;
+  state_name: string;
 }
 
 export default ItemData;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./Header.module.scss";
+import Link from "next/link";
 
 const Header = () => {
   const [search, setSearch] = useState("");
@@ -27,14 +28,16 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <form onSubmit={handleSearch} className={styles["form-search"]}>
-        <div className={styles.logo}>
-          <Image
-            src="/Logo_ML.png"
-            alt="mercado libre logo"
-            width={40}
-            height={25}
-          />
-        </div>
+        <Link href="/">
+          <a className={styles.logo}>
+            <Image
+              src="/Logo_ML@2x.png.png"
+              alt="mercado libre logo"
+              width={60}
+              height={40}
+            />
+          </a>
+        </Link>
         <div className={styles["search-bar"]}>
           <div className={styles["input-container"]}>
             <input
@@ -48,8 +51,8 @@ const Header = () => {
               <Image
                 src="/ic_Search.png"
                 alt="search icon"
-                width={15}
-                height={15}
+                width={20}
+                height={20}
               />
             </button>
           </div>

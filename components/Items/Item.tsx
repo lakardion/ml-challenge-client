@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ItemData from "../../types/Items/ItemData";
+import formatCurrency from "../../Utils/formatCurrency";
 import styles from "./Items.module.scss";
 interface ItemProps {
   itemData: ItemData;
@@ -19,23 +20,29 @@ const Item = ({ itemData }: ItemProps) => {
           <Image
             src={itemData.picture}
             alt={itemData.title}
-            height={100}
-            width={100}
+            height={180}
+            width={180}
           />
         }
       </div>
       <div className={styles["item-description"]}>
-        <div className={styles["price-description"]}>
-          <div className={styles["price"]}>
-            <h3>$ {itemData.price.amount}</h3>
+        <div className={styles["price-state"]}>
+          <div className={styles["price-shipping"]}>
+            <div className={styles['price']}>{formatCurrency(itemData.price.amount)}</div>
+            {itemData.free_shipping ? (
+              <div className={styles["free-shipping-icon"]}>
+                <Image
+                  src="/ic_shipping.png"
+                  alt="free shipping"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            ) : null}
           </div>
-          <div className={styles["description"]}>
-            <p>{itemData.title}</p>
-          </div>
+          <div className={styles["seller-location"]}>{itemData.state_name}</div>
         </div>
-        <div className={styles["seller-location"]}>
-          <p>TODO</p>
-        </div>
+        <div className={styles["description"]}>{itemData.title}</div>
       </div>
     </div>
   );

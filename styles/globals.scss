@@ -1,4 +1,5 @@
 @import "./theme.scss";
+
 html,
 body {
   padding: 0;
@@ -22,4 +23,12 @@ a {
 img {
   pointer-events: none;
   user-select: none;
+}
+
+@media screen and (min-width: 768px) {
+  main,
+  header > form {
+    max-width: 80%;
+    margin: auto;
+  }
 }
