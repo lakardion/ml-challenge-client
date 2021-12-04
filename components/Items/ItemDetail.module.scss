@@ -1,0 +1,66 @@
+@import "./../../styles/theme.scss";
+
+.item-detail-container {
+  background: white;
+  border-radius: 4px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.image-price-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.description {
+  margin: 32px 0 32px;
+  line-height: 24px;
+}
+.price-status-container {
+  display: flex;
+  flex-direction: column;
+  margin: 32px 0 32px 0;
+  justify-content: center;
+}
+.image-container {
+  flex-grow: 1;
+}
+.status {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.title {
+  font-weight: bold;
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+.price {
+  font-size: 46px;
+}
+.buy-button {
+  border: none;
+  border-radius: 4px;
+  background: $blue-700;
+  padding: 1rem 0 1rem;
+  color: white;
+  font-size: 18px;
+  margin: 32px 0 32px 0;
+  cursor: pointer;
+
+  &:hover {
+    background: $blue-800;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .image-price-container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  .price {
+    margin: 0;
+  }
+  .price-status-container {
+    margin: 0 0 0 32px;
+  }
+}

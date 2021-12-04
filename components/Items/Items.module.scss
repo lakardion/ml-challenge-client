@@ -1,5 +1,10 @@
 @import "../../styles/theme.scss";
-@import "../../styles/pxToRem.scss";
+
+.item-list-container {
+  background: white;
+  padding: 0 1.5rem 0 1.5rem;
+  border-radius: 4px;
+}
 
 .item {
   display: flex;
@@ -7,14 +12,20 @@
   background: white;
   border-bottom: solid 1px rgba($black-500, 0.5);
   width: 100%;
+  cursor: pointer;
+
+  &:last-child{
+    border: none;
+  }
 }
+
 .image-container {
   max-height: 180px;
   max-width: 180px;
-  margin: pxToRem(16px);
+  margin: 16px;
 
   img {
-    border-radius: pxToRem(4px);
+    border-radius: 4px;
   }
 }
 .item-description {
@@ -25,7 +36,7 @@
 .price-state {
   display: flex;
   flex-direction: row;
-  margin: 2rem 0 pxToRem(32px);
+  margin: 2rem 0 32px;
 }
 
 .price-shipping {
@@ -35,7 +46,7 @@
   align-items: center;
 
   .price {
-    font-size: pxToRem(24px);
+    font-size: 24px;
     font-weight: 400;
   }
 }
@@ -43,10 +54,10 @@
   flex-grow: 1;
 }
 .description {
-  font-size: pxToRem(18px);
+  font-size: 18px;
 }
 .seller-location {
-  font-size: pxToRem(12px);
+  font-size: 12px;
   color: $black-500;
   display: flex;
   justify-content: center;

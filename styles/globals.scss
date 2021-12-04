@@ -24,6 +24,18 @@ img {
   pointer-events: none;
   user-select: none;
 }
+h1 {
+  font-size: 46px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
+}
+.text-small {
+  font-size: 14px;
+}
 
 @media screen and (min-width: 768px) {
   main,

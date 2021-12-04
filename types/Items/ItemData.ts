@@ -5,7 +5,7 @@ interface ItemData {
   title: string;
   price: Price;
   picture: string;
-  condition: boolean;
+  condition: string;
   free_shipping: boolean;
   state_name: string;
 }
