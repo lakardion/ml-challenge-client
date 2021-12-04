@@ -11,6 +11,11 @@ You can use this one:
   NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
 ```
 
+Install dependencies:
+```bash
+npm ci
+```
+
 Then you should be all set, run the following
 
 ```bash
