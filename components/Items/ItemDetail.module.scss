@@ -20,9 +20,10 @@
   flex-direction: column;
   margin: 32px 0 32px 0;
   justify-content: center;
+  flex-grow: 1;
 }
 .image-container {
-  flex-grow: 1;
+  // flex-grow: 1;
 }
 .status {
   font-size: 14px;
@@ -35,6 +36,10 @@
 }
 .price {
   font-size: 46px;
+  white-space: nowrap;
+  sup{
+    font-size: 24px;
+  }
 }
 .buy-button {
   border: none;

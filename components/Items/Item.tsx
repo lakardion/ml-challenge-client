@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ItemData from "../../types/Items/ItemData";
-import formatCurrency from "../../Utils/formatCurrency";
+import { formatCurrency } from "../../Utils/UtilFunctions";
 import styles from "./Items.module.scss";
 interface ItemProps {
   itemData: ItemData;
@@ -28,7 +28,9 @@ const Item = ({ itemData }: ItemProps) => {
       <div className={styles["item-description"]}>
         <div className={styles["price-state"]}>
           <div className={styles["price-shipping"]}>
-            <div className={styles['price']}>{formatCurrency(itemData.price.amount)}</div>
+            <div className={styles["price"]}>
+              {formatCurrency(itemData.price.amount)}
+            </div>
             {itemData.free_shipping ? (
               <div className={styles["free-shipping-icon"]}>
                 <Image

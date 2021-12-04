@@ -1,8 +1,7 @@
+import Image from "next/image";
+import styles from "./Home.module.scss";
+
 const Home = () => {
-  return (
-    <div>
-      Usá nuestra barra de búsqueda y descubrí con qué sorprenderte en tu puerta
-    </div>
-  );
+  return <></>;
 };
 export default Home;

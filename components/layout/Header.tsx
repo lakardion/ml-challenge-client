@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
+import useItemsStore from "../../stores/itemsStore";
 
 const Header = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
+  const clearAllItems = useItemsStore((is) => is.clearAllItems);
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -14,6 +16,7 @@ const Header = () => {
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     if (!search) return;
+    clearAllItems();
     e.preventDefault();
     router.push(
       {

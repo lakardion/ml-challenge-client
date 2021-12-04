@@ -15,6 +15,7 @@ interface ItemState extends State {
   fetchItems: (searchQuery: string) => Promise<void>;
   fetchSingleItem: (itemId: string) => Promise<void>;
   clearCurrentItemDetail: () => void;
+  clearAllItems: () => void;
 }
 
 const useItemsStore = create<ItemState>((set, get) => ({
@@ -47,6 +48,7 @@ const useItemsStore = create<ItemState>((set, get) => ({
     }
   },
   clearCurrentItemDetail: () => set({ singleItem: null }),
+  clearAllItems: () => set({ items: [] }),
 }));
 
 export default useItemsStore;
