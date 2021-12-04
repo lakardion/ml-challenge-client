@@ -1,27 +1,30 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useMemo } from "react";
-import useItemsStore from "../../stores/itemsStore";
+import ItemDetailData from "../../types/Items/ItemDetailData";
 import { formatCurrency, getDecimals } from "../../Utils/UtilFunctions";
 import styles from "./ItemDetail.module.scss";
 
-const ItemDetail = () => {
-  const singleItem = useItemsStore((is) => is.singleItem);
+interface ItemDetailProps {
+  item: ItemDetailData;
+}
+const ItemDetail = ({ item }: ItemDetailProps) => {
   const decimals = useMemo(
-    () => getDecimals(singleItem?.price.amount, singleItem?.price.decimals),
-    [singleItem?.price.amount, singleItem?.price.decimals]
+    () => getDecimals(item?.price.amount, item?.price.decimals),
+    [item?.price.amount, item?.price.decimals]
   );
+  
   return (
     <>
       <Head>
-        <title>Challenge | {singleItem?.title}</title>
+        <title>Challenge | {item?.title}</title>
       </Head>
-      {singleItem ? (
+      {item ? (
         <div className={styles["item-detail-container"]}>
           <div className={styles["image-price-container"]}>
             <div>
               <Image
-                src={singleItem.pictures?.[0]}
+                src={item.pictures?.[0]}
                 alt="item picture"
                 height={680}
                 width={680}
@@ -30,12 +33,12 @@ const ItemDetail = () => {
             </div>
             <div className={styles["price-status-container"]}>
               <div className={styles["status"]}>
-                {singleItem.condition === "new" ? "Nuevo" : "Usado"} -{" "}
-                {singleItem.sold_quantity} vendidos
+                {item.condition === "new" ? "Nuevo" : "Usado"} -{" "}
+                {item.sold_quantity} vendidos
               </div>
-              <h3 className={styles["title"]}> {singleItem.title}</h3>
+              <h3 className={styles["title"]}> {item.title}</h3>
               <div className={styles["price"]}>
-                {formatCurrency(singleItem.price.amount)}
+                {formatCurrency(item.price.amount)}
                 {decimals.map((d, idx) => (
                   <sup key={`decimal-number-${idx}`}>{d}</sup>
                 ))}
@@ -46,7 +49,7 @@ const ItemDetail = () => {
           <div>
             <div>
               <h2>Descripción del producto</h2>
-              <p className={styles["description"]}>{singleItem.description}</p>
+              <p className={styles["description"]}>{item.description}</p>
             </div>
           </div>
         </div>

@@ -1,25 +1,52 @@
+import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import CategoryBreadcrum from "../../components/CategoryBreadcrumb/CategoryBreadcrum";
 import useFetchFromQuery from "../../components/hooks/useFetchFromQuery";
 import Item from "../../components/Items/Item";
-import useItemsStore from "../../stores/itemsStore";
-import Head from "next/head";
-import { useRouter } from "next/router";
 import styles from "../../components/Items/Items.module.scss";
+import useItemMetadataStore from "../../stores/itemMetadataStore";
+import ItemResponseData from "../../types/Items/ItemResponseData";
+import { getItemsByQueryUri } from "../../Utils/ApiUris";
+import axiosInstance from "../../Utils/axiosInstance";
 
-const ItemsList = () => {
-  const fetchItems = useItemsStore((is) => is.fetchItems);
-  const items = useItemsStore((is) => is.items);
-  useFetchFromQuery(fetchItems, "search");
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { search } = context.query;
+  if (!search) return { props: { itemResponseData: null } };
+  const { data } = await axiosInstance.get<ItemResponseData>(
+    getItemsByQueryUri(search.toString())
+  );
+  return {
+    props: {
+      itemResponseData: data,
+    },
+  };
+}
+interface ItemListProps {
+  itemResponseData?: ItemResponseData;
+}
+
+const ItemsList = ({ itemResponseData }: ItemListProps) => {
   const { query } = useRouter();
+  const setCategories = useItemMetadataStore((is) => is.setCategories);
+  const setAuthor = useItemMetadataStore((is) => is.setAuthor);
 
-  return items.length ? (
+  useEffect(() => {
+    setCategories(itemResponseData?.categories);
+  }, [itemResponseData?.categories, setCategories]);
+  useEffect(() => {
+    setAuthor(itemResponseData?.author);
+  }, [itemResponseData?.author, setAuthor]);
+  
+  return itemResponseData?.items.length ? (
     <>
       <Head>
         <title>Challenge | Search: {query.search}</title>
       </Head>
       <CategoryBreadcrum />
       <div className={styles["item-list-container"]}>
-        {items.map((i) => (
+        {itemResponseData.items.map((i) => (
           <Item key={i.id} itemData={i} />
         ))}
       </div>

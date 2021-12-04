@@ -1,18 +1,31 @@
+import { GetServerSidePropsContext } from "next";
 import CategoryBreadcrum from "../../components/CategoryBreadcrumb/CategoryBreadcrum";
-import useFetchFromQuery from "../../components/hooks/useFetchFromQuery";
 import ItemDetail from "../../components/Items/ItemDetail";
-import useItemsStore from "../../stores/itemsStore";
+import ItemDetailData from "../../types/Items/ItemDetailData";
+import ItemDetailResponseData from "../../types/Items/ItemDetailResponseData";
+import { getItemUri } from "../../Utils/ApiUris";
+import axiosInstance from "../../Utils/axiosInstance";
 
-const ItemById = () => {
-  const fetchItemDetail = useItemsStore((is) => is.fetchSingleItem);
-  const clearItemDetail = useItemsStore((is) => is.clearCurrentItemDetail);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { id } = context.query;
+  const { data } = await axiosInstance.get<ItemDetailResponseData>(
+    getItemUri(id.toString())
+  );
+  return {
+    props: {
+      item: data.item,
+    },
+  };
+}
 
-  useFetchFromQuery(fetchItemDetail, "id", clearItemDetail);
-
+interface ItemByIdProps {
+  item: ItemDetailData;
+}
+const ItemById = ({ item }:ItemByIdProps) => {
   return (
     <>
       <CategoryBreadcrum />
-      <ItemDetail />
+      <ItemDetail item={item} />
     </>
   );
 };
